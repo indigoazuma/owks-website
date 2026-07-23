@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 500 500">
+  <!-- Generator: Adobe Illustrator 30.5.1, SVG Export Plug-In . SVG Version: 2.1.4 Build 3)  -->
+  <defs>
+    <style>
+      .st0, .st1 {
+        fill: none;
+      }
+
+      .st1 {
+        stroke: #4167a9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="st1" d="M292.53,339.4c.89-32.79-77.98-63.8-77.98-116.96s63.8-77.09,93.92-55.82c-20.38-109.87-229.25-124.94-229.25,185.86"/>
+    <path class="st1" d="M457.34,339.4h-191.39l-11.8,11.8c-6.7,6.7-17.55,6.7-24.25,0l-15.18-15.18c-6.7-6.7-17.55-6.7-24.25,0l-19.17,19.17c-6.7,6.7-17.55,6.7-24.25,0l-14.96-14.96c-6.7-6.7-17.55-6.7-24.25,0l-7.22,7.22c-3.22,3.22-7.58,5.02-12.12,5.02h-45.84"/>
+    <line class="st1" x1="457.34" y1="404.97" x2="42.66" y2="404.97"/>
+    <polygon class="st1" points="381.98 208.97 306.62 269.09 340.07 269.09 340.07 339.4 423.89 339.4 423.89 269.09 457.34 269.09 381.98 208.97"/>
+  </g>
+  <rect class="st0" width="500" height="500"/>
+</svg>
