@@ -1,0 +1,20 @@
+  <!-- 共通フッター -->
+  <footer class="site-footer">
+    <div>
+      <strong>株式会社OWKS</strong>
+      <p>
+        防災シェルターの企画・開発・製作<br>
+        宮崎本社 / 東京支社<br>
+        TEL: <a class="site-footer__contact-link" href="tel:0985442110">0985-44-2110</a><br>
+        MAIL: <a class="site-footer__contact-link" href="mailto:contact@owks.jp">contact@owks.jp</a>
+      </p>
+    </div>
+    <nav aria-label="フッターナビゲーション">
+      <span>PAGES</span>
+      <a href="product.html"{% if currentPage == "product" %} aria-current="page"{% endif %}>製品詳細</a>
+      <a href="simulation.html"{% if currentPage == "simulation" %} aria-current="page"{% endif %}>シミュレーション</a>
+      <a href="faq.html"{% if currentPage == "faq" %} aria-current="page"{% endif %}>FAQ</a>
+      <a href="company.html"{% if currentPage == "company" %} aria-current="page"{% endif %}>会社概要</a>
+      <a href="contact.html"{% if currentPage == "contact" %} aria-current="page"{% endif %}>お問い合わせ</a>
+    </nav>
+  </footer>
