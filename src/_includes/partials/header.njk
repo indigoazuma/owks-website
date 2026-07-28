@@ -1,0 +1,16 @@
+  <!-- ヘッダー -->
+  <header class="site-header{% if headerOnBlue %} header-on-blue{% endif %}">
+    <a class="logo" href="index.html"{% if currentPage == "home" %} aria-current="page"{% endif %}>株式会社OWKS</a>
+    <button class="menu-button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="global-nav" id="global-navigation" aria-label="メインナビゲーション">
+      <a href="product.html"{% if currentPage == "product" %} aria-current="page"{% endif %}>製品詳細</a>
+      <a href="simulation.html"{% if currentPage == "simulation" %} aria-current="page"{% endif %}>シミュレーション</a>
+      <a href="faq.html"{% if currentPage == "faq" %} aria-current="page"{% endif %}>FAQ</a>
+      <a href="company.html"{% if currentPage == "company" %} aria-current="page"{% endif %}>会社概要</a>
+      <a class="nav-contact" href="contact.html"{% if currentPage == "contact" %} aria-current="page"{% endif %}>お問い合わせ</a>
+    </nav>
+  </header>

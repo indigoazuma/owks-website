@@ -1,32 +1,100 @@
-const hasPageSpecificCta = document.querySelector('.home-cta, [data-page-pre-footer]') !== null;
-const hidesCommonPreFooter = document.body.classList.contains('page-contact');
-const preFooter = hasPageSpecificCta || hidesCommonPreFooter ? '' : `
-<section class="pre-footer">
-  <div>製品についてのご相談・ご質問は、お気軽にお問い合わせください。</div>
-  <div><a class="button button--light pre-footer__secondary" href="company.html">会社概要はこちら →</a><a class="button" href="contact.html">お問い合わせ</a></div>
-</section>`;
-const footer = `
-${preFooter}
-<footer class="site-footer">
-  <div><strong>株式会社OWKS</strong><p>防災シェルターの企画・開発・製作<br>宮崎本社 / 東京支社<br>TEL: 0985-44-2110<br>MAIL: contact@owks.jp</p></div>
-  <div><span>PAGES</span><a href="product.html">製品詳細</a><a href="simulation.html">シミュレーション</a><a href="faq.html">FAQ</a><a href="company.html">会社概要</a><a href="contact.html">お問い合わせ</a></div>
-  <div><span>LEGAL</span></div>
-</footer>`;
-document.querySelectorAll('[data-footer]').forEach(el => el.innerHTML = footer);
-const menu = document.querySelector('.menu-button');
-const nav = document.querySelector('.global-nav');
-menu?.addEventListener('click', () => {
-  const open = menu.getAttribute('aria-expanded') === 'true';
-  menu.setAttribute('aria-expanded', String(!open));
-  nav.classList.toggle('open');
-});
-document.querySelectorAll('.faq-item button').forEach(button => button.addEventListener('click', () => {
-  const item = button.closest('.faq-item');
-  const open = item.classList.toggle('open');
-  button.setAttribute('aria-expanded', String(open));
-}));
-document.querySelector('.contact-form')?.addEventListener('submit', event => {
-  event.preventDefault();
-  const message = document.querySelector('.form-message');
-  message.textContent = 'お問い合わせありがとうございます。送信内容を受け付けました。';
-});
+/**
+ * モバイルメニュー
+ */
+function setupMobileMenu() {
+  const menuButton = document.querySelector('.menu-button');
+  const globalNavigation = document.querySelector('.global-nav');
+
+  if (!menuButton || !globalNavigation) return;
+
+  const closeMenu = () => {
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'メニューを開く');
+    globalNavigation.classList.remove('is-open');
+    document.body.classList.remove('is-menu-open');
+  };
+
+  const openMenu = () => {
+    menuButton.setAttribute('aria-expanded', 'true');
+    menuButton.setAttribute('aria-label', 'メニューを閉じる');
+    globalNavigation.classList.add('is-open');
+    document.body.classList.add('is-menu-open');
+  };
+
+  menuButton.addEventListener('click', () => {
+    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  globalNavigation.addEventListener('click', event => {
+    if (event.target.closest('a')) closeMenu();
+  });
+
+  document.addEventListener('click', event => {
+    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+    const clickedOutsideMenu = !menuButton.contains(event.target)
+      && !globalNavigation.contains(event.target);
+
+    if (isOpen && clickedOutsideMenu) closeMenu();
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+
+    closeMenu();
+    menuButton.focus();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 820) closeMenu();
+  });
+}
+
+/**
+ * FAQアコーディオン
+ */
+function setupFaqAccordion() {
+  document.querySelectorAll('.faq-item button').forEach(button => {
+    const answerId = button.getAttribute('aria-controls');
+    const answer = answerId ? document.getElementById(answerId) : null;
+    const item = button.closest('.faq-item');
+
+    if (!answer || !item) return;
+
+    const syncFaqState = isOpen => {
+      item.classList.toggle('is-open', isOpen);
+      button.setAttribute('aria-expanded', String(isOpen));
+      answer.hidden = !isOpen;
+    };
+
+    syncFaqState(button.getAttribute('aria-expanded') === 'true');
+    button.addEventListener('click', () => {
+      syncFaqState(button.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+}
+
+/**
+ * お問い合わせフォーム
+ */
+function setupContactForm() {
+  const contactForm = document.querySelector('.contact-form');
+
+  if (!contactForm) return;
+
+  contactForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const status = contactForm.querySelector('[data-form-status]');
+
+    if (status) {
+      status.dataset.state = 'unavailable';
+      status.textContent = '現在、お問い合わせフォームは準備中です。送信は行われていません。';
+    }
+
+    // TODO: 正式な送信先が確定したら、送信中・成功・失敗の状態更新と二重送信防止を実装する。
+  });
+}
+
+setupMobileMenu();
+setupFaqAccordion();
+setupContactForm();

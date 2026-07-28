@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ja">
+{% include "partials/head.njk" %}
+<body class="{{ bodyClass }}">
+  {% include "partials/header.njk" %}
+
+  <main>
+{{ content | safe }}
+  </main>
+
+  {% if commonCta %}
+    {% include "partials/common-cta.njk" %}
+  {% endif %}
+
+  {% include "partials/footer.njk" %}
+  <script defer src="main.js"></script>
+</body>
+</html>
