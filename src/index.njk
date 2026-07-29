@@ -11,17 +11,17 @@ description: "株式会社OWKS 防災シェルター ARCHIMEDES"
     <section class="home-hero">
       <div class="home-hero__inner">
         <div class="home-hero__copy">
-          <h1 class="home-hero-title">津波災害時、<br>庭先にある家族の避難場所。</h1>
-          <p>高台まで走って逃げられない人のための<br>地上固定型防災シェルター</p>
-          <div class="product-name">ARCHIMEDES <small>（アルキメデス）</small></div>
-          <strong class="university">宮崎大学との共同開発製品</strong>
-          <div class="button-row">
-            <a class="button button--light" href="product.html">製品詳細を見る →</a>
-            <a class="button button--light" href="simulation.html">シミュレーションへ →</a>
+          <h1 class="home-hero-title" data-reveal="up" data-reveal-priority>津波災害時、<br>庭先にある家族の避難場所。</h1>
+          <p data-reveal="up" data-reveal-delay="1" data-reveal-priority>高台まで走って逃げられない人のための<br>地上固定型防災シェルター</p>
+          <div class="product-name" data-reveal="up" data-reveal-delay="2" data-reveal-priority>ARCHIMEDES <small>（アルキメデス）</small></div>
+          <strong class="university" data-reveal="up" data-reveal-delay="3" data-reveal-priority>宮崎大学との共同開発製品</strong>
+          <div class="button-row" data-reveal="up" data-reveal-delay="4" data-reveal-priority>
+            <a class="button button--light" href="product.html">製品詳細を見る <span class="button__arrow" aria-hidden="true">→</span></a>
+            <a class="button button--light" href="simulation.html">シミュレーションへ <span class="button__arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
-      <div class="home-hero__media" aria-label="製品イメージ">
+      <div class="home-hero__media" aria-label="製品イメージ" data-reveal="scale" data-reveal-delay="1" data-reveal-priority>
         <img class="media-image home-hero__main-image" src="images/home-hero-product.webp" width="800" height="500" alt="芝生に設置された防災シェルターARCHIMEDES" fetchpriority="high" decoding="async">
         <img class="media-image home-hero__sub-image" src="images/home-hero-product2.webp" width="900" height="500" alt="防災シェルターARCHIMEDESの設置イメージ" decoding="async">
       </div>
@@ -30,11 +30,11 @@ description: "株式会社OWKS 防災シェルター ARCHIMEDES"
     <!-- 津波の脅威 -->
     <section class="flood-section">
       <div class="container">
-        <p class="eyebrow">— FLOODING</p>
-        <h2>大地震と津波の脅威</h2>
-        <p>地震発生後、津波はあっという間に沿岸部へ到達します。<br>沿岸部から離れた内陸でも、陸上の短距離選手並みのスピードで迫ります。</p>
+        <p class="eyebrow" data-reveal="up">— FLOODING</p>
+        <h2 data-reveal="up" data-reveal-delay="1">大地震と津波の脅威</h2>
+        <p data-reveal="up" data-reveal-delay="2">地震発生後、津波はあっという間に沿岸部へ到達します。<br>沿岸部から離れた内陸でも、陸上の短距離選手並みのスピードで迫ります。</p>
         <div class="depth-grid">
-          <article>
+          <article data-reveal="up">
             <strong class="stat-value">30<small> cm</small></strong>
             <span class="number">DEPTH 30CM</span>
             <div class="depth-progress" data-depth="30" role="img" aria-label="浸水深30パーセント">
@@ -42,7 +42,7 @@ description: "株式会社OWKS 防災シェルター ARCHIMEDES"
             </div>
             <p>歩行困難が始まる水位。子ども・高齢者には特に危険な状況となります。</p>
           </article>
-          <article>
+          <article data-reveal="up" data-reveal-delay="1">
             <strong class="stat-value">50<small> cm</small></strong>
             <span class="number">DEPTH 50CM</span>
             <div class="depth-progress" data-depth="50" role="img" aria-label="浸水深50パーセント">
@@ -50,7 +50,7 @@ description: "株式会社OWKS 防災シェルター ARCHIMEDES"
             </div>
             <p>成人でも移動が困難になります。転倒リスクが高まり、自力脱出が難しくなります。</p>
           </article>
-          <article>
+          <article data-reveal="up" data-reveal-delay="2">
             <strong class="stat-value stat-value--danger">100<small> cm+</small></strong>
             <span class="number">DEPTH 100CM+</span>
             <div class="depth-progress" data-depth="100" role="img" aria-label="浸水深100パーセント">
@@ -60,12 +60,12 @@ description: "株式会社OWKS 防災シェルター ARCHIMEDES"
           </article>
         </div>
         <div class="flood-proof">
-          <div class="flood-proof__copy">
+          <div class="flood-proof__copy" data-reveal="left">
             <h3><span class="number">30cm</span>の津波でも足を掬われてしまいます。</h3>
             <p>30cmの津波は一見浅く見えても、実際には歩行が難しくなります。避難時の移動リスクをシミュレーション映像でご確認いただけます。</p>
             <p class="flood-proof__note">映像を見てわかるように、人はあっという間に流されてしまいます。津波が近くまで迫ってきてしまったら、高台まで走って逃げることはかなり困難です。</p>
           </div>
-          <div class="placeholder media-placeholder video-frame flood-proof__media">
+          <div class="placeholder media-placeholder video-frame flood-proof__media" data-reveal="scale" data-reveal-delay="1">
             <iframe
               src="https://www.youtube.com/embed/tKdARwrWjxo"
               title="検証映像"
@@ -82,43 +82,45 @@ description: "株式会社OWKS 防災シェルター ARCHIMEDES"
     <!-- 製品紹介 -->
     <section class="grid-section product-intro">
       <div class="container product-intro__layout">
-        <img class="media-image product-intro__image" src="images/home-product-overview.webp" width="1000" height="1000" alt="防災シェルターARCHIMEDESの製品イメージ" loading="lazy" decoding="async">
+        <img class="media-image product-intro__image" src="images/home-product-overview.webp" width="1000" height="1000" alt="防災シェルターARCHIMEDESの製品イメージ" loading="lazy" decoding="async" data-reveal="scale">
         <div class="product-intro__copy">
-          <p class="eyebrow">— PRODUCT</p>
-          <h2>ARCHIMEDES <small>（アルキメデス）</small></h2>
-          <h3>地上固定型防災シェルター</h3>
-          <p>弊社のアルキメデスは、避難する時間がない、避難することが困難な人のために、一時的に津波から身を守るベースを、家の庭先など身近な場所に確保することを目的とした地上固定型シェルターです。</p>
-          <a class="button" href="product.html">製品詳細を見る →</a>
-          <a class="button" href="simulation.html">シミュレーションを見る →</a>
+          <p class="eyebrow" data-reveal="up">— PRODUCT</p>
+          <h2 data-reveal="up" data-reveal-delay="1">ARCHIMEDES <small>（アルキメデス）</small></h2>
+          <h3 data-reveal="up" data-reveal-delay="2">地上固定型防災シェルター</h3>
+          <p data-reveal="up" data-reveal-delay="3">弊社のアルキメデスは、避難する時間がない、避難することが困難な人のために、一時的に津波から身を守るベースを、家の庭先など身近な場所に確保することを目的とした地上固定型シェルターです。</p>
+          <div data-reveal="up" data-reveal-delay="4">
+            <a class="button" href="product.html">製品詳細を見る <span class="button__arrow" aria-hidden="true">→</span></a>
+            <a class="button" href="simulation.html">シミュレーションを見る <span class="button__arrow" aria-hidden="true">→</span></a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- お知らせ -->
     <section class="news container">
-      <p class="eyebrow">— NEWS</p>
-      <h2>お知らせ</h2>
+      <p class="eyebrow" data-reveal="up">— NEWS</p>
+      <h2 data-reveal="up" data-reveal-delay="1">お知らせ</h2>
       <dl>
-        <dt>2025.11.14〜15</dt>
-        <dd>宮崎県内の企業や研究機関、大学の優れた製品や最新技術を紹介する<br class="pc-only-break">「第32回みやざきテクノフェア」に出展しました。</dd>
-        <dt>2025.11.15</dt>
-        <dd>宮崎日日新聞朝刊に、防災シェルターの記事が掲載されました。</dd>
+        <dt data-reveal="up">2025.11.14〜15</dt>
+        <dd data-reveal="up">宮崎県内の企業や研究機関、大学の優れた製品や最新技術を紹介する<br class="pc-only-break">「第32回みやざきテクノフェア」に出展しました。</dd>
+        <dt data-reveal="up" data-reveal-delay="1">2025.11.15</dt>
+        <dd data-reveal="up" data-reveal-delay="1">宮崎日日新聞朝刊に、防災シェルターの記事が掲載されました。</dd>
         <!-- TODO: 公開前に仮日付「2026.00.00」を正式な日付へ修正する。 -->
-        <dt>2026.00.00</dt>
-        <dd>ホームページを開設しました</dd>
+        <dt data-reveal="up" data-reveal-delay="2">2026.00.00</dt>
+        <dd data-reveal="up" data-reveal-delay="2">ホームページを開設しました</dd>
         <!-- TODO: 公開前に仮日付「2026.00.00」を正式な日付へ修正する。 -->
-        <dt>2026.00.00</dt>
-        <dd>防災シェルター「ARCHIMEDES」が販売開始されました</dd>
+        <dt data-reveal="up" data-reveal-delay="3">2026.00.00</dt>
+        <dd data-reveal="up" data-reveal-delay="3">防災シェルター「ARCHIMEDES」が販売開始されました</dd>
       </dl>
     </section>
 
     <!-- トップ専用CTA -->
     <section class="home-cta container">
-      <div class="home-cta__card home-cta__card--company">
+      <div class="home-cta__card home-cta__card--company" data-reveal="left">
         <p class="home-cta__description">防災シェルターの企画・開発・製作を行い、防災に関する製品づくりに取り組んでいます。宮崎大学との共同研究プロジェクトにより、信頼性の高い製品開発を進めています。</p>
         <a class="button button--light" href="company.html">会社概要を見る</a>
       </div>
-      <div class="home-cta__card home-cta__card--contact">
+      <div class="home-cta__card home-cta__card--contact" data-reveal="right" data-reveal-delay="1">
         <p class="home-cta__description">製品に関するご質問や導入のご相談など、お気軽にお問い合わせください。</p>
         <a class="button button--light" href="contact.html">お問い合わせはこちら</a>
       </div>

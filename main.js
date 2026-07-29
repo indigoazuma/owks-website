@@ -1,4 +1,30 @@
 /**
+ * 固定ヘッダーのスクロール状態
+ */
+function setupStickyHeader() {
+  const siteHeader = document.querySelector('.site-header');
+
+  if (!siteHeader) return;
+
+  let isTicking = false;
+
+  const updateHeaderState = () => {
+    siteHeader.classList.toggle('is-scrolled', window.scrollY > 30);
+    isTicking = false;
+  };
+
+  const requestHeaderUpdate = () => {
+    if (isTicking) return;
+
+    isTicking = true;
+    requestAnimationFrame(updateHeaderState);
+  };
+
+  updateHeaderState();
+  window.addEventListener('scroll', requestHeaderUpdate, { passive: true });
+}
+
+/**
  * モバイルメニュー
  */
 function setupMobileMenu() {
@@ -95,6 +121,55 @@ function setupContactForm() {
   });
 }
 
+/**
+ * ページ共通の表示モーション
+ */
+function setupRevealAnimations() {
+  const revealElements = [...document.querySelectorAll('[data-reveal]')];
+
+  if (!revealElements.length) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.documentElement.classList.add('motion-ready');
+
+  const showElement = element => {
+    element.classList.add('is-visible');
+  };
+
+  if (reducedMotion.matches || !('IntersectionObserver' in window)) {
+    revealElements.forEach(showElement);
+    return;
+  }
+
+  const priorityElements = revealElements.filter(element =>
+    element.hasAttribute('data-reveal-priority')
+  );
+  const scrollElements = revealElements.filter(element =>
+    !element.hasAttribute('data-reveal-priority')
+  );
+
+  requestAnimationFrame(() => {
+    priorityElements.forEach(showElement);
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      showElement(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, {
+    rootMargin: '0px 0px -10% 0px',
+    threshold: 0.12
+  });
+
+  scrollElements.forEach(element => observer.observe(element));
+}
+
+setupStickyHeader();
 setupMobileMenu();
 setupFaqAccordion();
 setupContactForm();
+setupRevealAnimations();

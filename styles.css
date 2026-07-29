@@ -32,6 +32,12 @@
   --font-size-card-copy: 12px;
   --font-size-faq-answer: 13px;
   --font-size-global-nav: 12px;
+  --motion-duration-fast: 260ms;
+  --motion-duration-normal: 720ms;
+  --motion-duration-slow: 860ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-distance: 20px;
+  --motion-stagger: 100ms;
 }
 
 /* ========== Reset / Base ========== */
@@ -103,7 +109,7 @@ h2 {
 
 /* ヘッダー */
 .site-header {
-  position: absolute;
+  position: fixed;
   z-index: 20;
   top: 0;
   display: flex;
@@ -112,23 +118,44 @@ h2 {
   width: 100%;
   height: 110px;
   padding: 38px 54px 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease,
+    height 250ms ease,
+    padding 250ms ease;
 }
 
 .logo {
+  position: relative;
+  z-index: 32;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.02em;
+  transition: color 250ms ease;
 }
 
 .header-on-blue .logo {
   color: var(--color-white);
 }
 
+.site-header.is-scrolled {
+  align-items: center;
+  height: 86px;
+  padding-top: 0;
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+  background: rgba(65, 103, 169, 0.96);
+}
+
+.site-header.is-scrolled .logo,
+.site-header.is-scrolled .global-nav a {
+  color: var(--color-white);
+}
+
 .global-nav {
-  position: fixed;
+  position: relative;
   z-index: 30;
-  top: 38px;
-  right: 54px;
   display: flex;
   align-items: center;
   gap: 25px;
@@ -2044,12 +2071,18 @@ h2 {
     padding: 20px;
   }
 
+  .site-header.is-scrolled {
+    align-items: flex-start;
+    height: 78px;
+    padding: 20px;
+  }
+
   .logo {
     font-size: 17px;
   }
 
   .menu-button {
-    z-index: 31;
+    z-index: 33;
     display: grid;
     width: 42px;
     height: 42px;
@@ -2078,12 +2111,19 @@ h2 {
     border-radius: 12px;
   }
 
-  .global-nav.is-open {
+  .global-nav.is-open,
+  .site-header.is-scrolled .global-nav.is-open {
     display: flex;
+    background: rgba(255, 255, 255, 0.96);
   }
 
   .global-nav a {
     padding: 12px;
+  }
+
+  .site-header.is-scrolled .global-nav.is-open a:not(.nav-contact),
+  body.is-menu-open .site-header .logo {
+    color: var(--color-text);
   }
 
   .nav-contact {
@@ -2716,4 +2756,98 @@ h2 {
 }
 
 /* ========== Motion ========== */
-/* 将来の共通アニメーションはこのセクションへ追加する。 */
+/* ページ共通：初回表示・スクロール表示 */
+[data-reveal] {
+  transition:
+    opacity var(--motion-duration-normal) var(--motion-ease) var(--reveal-delay, 0ms),
+    transform var(--motion-duration-normal) var(--motion-ease) var(--reveal-delay, 0ms);
+}
+
+[data-reveal="scale"] {
+  transition-duration: var(--motion-duration-slow);
+}
+
+.motion-ready [data-reveal]:not(.is-visible) {
+  opacity: 0;
+}
+
+.motion-ready [data-reveal="up"]:not(.is-visible) {
+  transform: translate3d(0, var(--motion-distance), 0);
+}
+
+.motion-ready [data-reveal="left"]:not(.is-visible) {
+  transform: translate3d(calc(var(--motion-distance) * -1), 0, 0);
+}
+
+.motion-ready [data-reveal="right"]:not(.is-visible) {
+  transform: translate3d(var(--motion-distance), 0, 0);
+}
+
+.motion-ready [data-reveal="scale"]:not(.is-visible) {
+  transform: scale(1.025);
+}
+
+[data-reveal-delay="1"] {
+  --reveal-delay: var(--motion-stagger);
+}
+
+[data-reveal-delay="2"] {
+  --reveal-delay: calc(var(--motion-stagger) * 2);
+}
+
+[data-reveal-delay="3"] {
+  --reveal-delay: calc(var(--motion-stagger) * 3);
+}
+
+[data-reveal-delay="4"] {
+  --reveal-delay: calc(var(--motion-stagger) * 4);
+}
+
+[data-reveal-delay="5"] {
+  --reveal-delay: calc(var(--motion-stagger) * 5);
+}
+
+.page-home .depth-progress__value {
+  transform-origin: left center;
+  transition: transform var(--motion-duration-slow) var(--motion-ease) 240ms;
+}
+
+.motion-ready .page-home .depth-grid article:not(.is-visible) .depth-progress__value {
+  transform: scaleX(0);
+}
+
+@media (max-width: 820px) {
+  .motion-ready [data-reveal="left"]:not(.is-visible),
+  .motion-ready [data-reveal="right"]:not(.is-visible) {
+    transform: translate3d(0, var(--motion-distance), 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .logo,
+  .global-nav,
+  .global-nav a,
+  .global-nav a span,
+  .nav-contact::before,
+  [data-reveal],
+  .page-home .depth-progress__value,
+  .page-home .depth-grid article,
+  .page-simulation .simulation-step-card,
+  .page-simulation .simulation-step-copy::before,
+  .page-simulation .simulation-step-copy > *,
+  .page-simulation .simulation-step-copy::after,
+  .button,
+  .button__arrow {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition-duration: 0.01ms;
+    transition-delay: 0ms;
+  }
+
+  .page-simulation .simulation-step-card:has(.simulation-step-copy:hover) {
+    translate: none;
+    scale: none;
+  }
+}
