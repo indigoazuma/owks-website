@@ -28,6 +28,10 @@
   --page-gutter: 48px;
   --radius-small: 7px;
   --radius-medium: 10px;
+  --font-size-body-copy: 13px;
+  --font-size-card-copy: 12px;
+  --font-size-faq-answer: 13px;
+  --font-size-global-nav: 12px;
 }
 
 /* ========== Reset / Base ========== */
@@ -131,7 +135,7 @@ h2 {
   padding: 9px 10px 9px 28px;
   border-radius: 40px;
   background: rgba(255, 255, 255, 0.82);
-  font-size: 12px;
+  font-size: var(--font-size-global-nav);
   font-weight: 600;
 }
 
@@ -338,7 +342,7 @@ h2 {
 }
 
 .flood-section > .container > p:not(.eyebrow) {
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
   font-weight: 500;
 }
 
@@ -415,7 +419,7 @@ h2 {
 .depth-grid p {
   margin-bottom: 0;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: var(--font-size-card-copy);
   line-height: 1.65;
 }
 
@@ -441,7 +445,7 @@ h2 {
 }
 
 .flood-proof p {
-  font-size: 12px;
+  font-size: var(--font-size-card-copy);
   line-height: 1.7;
 }
 
@@ -543,7 +547,7 @@ h2 {
 
 .product-intro__copy p {
   margin-bottom: 25px;
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
 }
 
 .product-intro__copy .button {
@@ -764,7 +768,7 @@ h2 {
 
 .company-hero .container > p:last-child {
   margin-bottom: 0;
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
   font-weight: 500;
 }
 
@@ -822,7 +826,7 @@ h2 {
 .company-access .company-section-title > p:last-child {
   margin-bottom: 0;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
 }
 
 .company-map {
@@ -912,7 +916,7 @@ h2 {
 .faq-answer {
   padding: 0 66px 34px 110px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: var(--font-size-faq-answer);
   line-height: 1.85;
 }
 
@@ -1118,7 +1122,7 @@ h2 {
 
 .product-detail-intro > p:last-of-type,
 .product-detail-description p {
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
   line-height: 1.9;
 }
 
@@ -1250,7 +1254,7 @@ h2 {
 .product-feature-card p {
   margin-bottom: 0;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: var(--font-size-card-copy);
 }
 
 .product-specifications {
@@ -1316,7 +1320,7 @@ h2 {
 .product-structure-section__lead {
   max-width: 850px;
   margin-bottom: 45px;
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
 }
 
 .product-structure-layout,
@@ -1407,7 +1411,7 @@ h2 {
 
 .product-experiment-copy > p:last-child {
   margin-bottom: 28px;
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
   line-height: 1.9;
 }
 
@@ -1480,7 +1484,7 @@ h2 {
 
 .product-verification-panel > p {
   margin-bottom: 28px;
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
 }
 
 .product-video-frame {
@@ -1603,7 +1607,7 @@ h2 {
 
 .hazard-guide > p {
   margin-bottom: 20px;
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
   font-weight: 500;
   line-height: 1.8;
 }
@@ -1697,7 +1701,7 @@ h2 {
 .simulation-reasons__lead {
   max-width: 100%;
   margin-bottom: 34px;
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
 }
 
 .simulation-reason-list {
@@ -1728,7 +1732,7 @@ h2 {
 .simulation-reason p {
   margin-bottom: 0;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: var(--font-size-card-copy);
 }
 
 .simulation-video-section {
@@ -1759,7 +1763,7 @@ h2 {
 .simulation-video-section > .container > p:not(.eyebrow),
 .simulation-flow__lead {
   margin-bottom: 28px;
-  font-size: 13px;
+  font-size: var(--font-size-body-copy);
 }
 
 .simulation-video-frame {
@@ -1902,7 +1906,7 @@ h2 {
 
 .simulation-step-copy p {
   margin-bottom: 0;
-  font-size: 12px;
+  font-size: var(--font-size-card-copy);
 }
 
 .simulation-cases {
@@ -1979,7 +1983,7 @@ h2 {
 .simulation-case-grid p {
   margin-bottom: 0;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: var(--font-size-card-copy);
   line-height: 1.9;
 }
 
@@ -1993,6 +1997,16 @@ h2 {
 }
 
 /* ========== Responsive ========== */
+
+/* PC本文サイズ */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-body-copy: 15px;
+    --font-size-card-copy: 14px;
+    --font-size-faq-answer: 15px;
+    --font-size-global-nav: 14px;
+  }
+}
 
 /* PC本文の自然な改行 */
 @media (min-width: 821px) {
@@ -2358,7 +2372,7 @@ h2 {
 
   .faq-answer {
     padding: 0 42px 26px;
-    font-size: 13px;
+    font-size: var(--font-size-faq-answer);
   }
 
   .section-block {
