@@ -28,7 +28,18 @@ pnpm run dev
 pnpm run build
 ```
 
-GitHub Pagesへ配置できる通常のHTML、CSS、JavaScript、画像が`dist/`へ出力されます。
+本番サーバーへ配置できるHTML、CSS、JavaScript、画像、お問い合わせAPIが`dist/`へ出力されます。
+
+## お問い合わせフォーム
+
+フォームの公開処理は`api/contact.php`、設定見本は`config/contact.example.php`です。
+SMTP認証情報はGit管理対象外の`config/contact.local.php`、または本番公開ディレクトリの一つ上に置く`owks-private/contact.php`へ設定します。
+
+1. `config/contact.example.php`をコピーして設定ファイルを作成します。
+2. SMTP情報と送信先を入力し、最後に`enabled`を`true`へ変更します。
+3. ローカルでは`config/contact.local.php`、本番では`owks-private/contact.php`を使用します。
+
+設定ファイルを公開ディレクトリ内やHTML、JavaScriptへ置かないでください。`config/contact.local.php`と`owks-private/`は`.gitignore`で除外されています。
 
 ## 新しいページを追加する
 

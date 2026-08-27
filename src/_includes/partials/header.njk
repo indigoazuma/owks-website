@@ -7,6 +7,7 @@
       <span></span>
     </button>
     <nav class="global-nav" id="global-navigation" aria-label="メインナビゲーション">
+      <a href="index.html"{% if currentPage == "home" %} aria-current="page"{% endif %}><span>トップページ</span></a>
       <a href="product.html"{% if currentPage == "product" %} aria-current="page"{% endif %}><span>製品詳細</span></a>
       <a href="simulation.html"{% if currentPage == "simulation" %} aria-current="page"{% endif %}><span>シミュレーション</span></a>
       <a href="faq.html"{% if currentPage == "faq" %} aria-current="page"{% endif %}><span>FAQ</span></a>
