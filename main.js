@@ -104,21 +104,98 @@ function setupFaqAccordion() {
  * お問い合わせフォーム
  */
 function setupContactForm() {
-  const contactForm = document.querySelector('.contact-form');
+  const contactForm = document.querySelector('[data-contact-form]');
 
   if (!contactForm) return;
 
-  contactForm.addEventListener('submit', event => {
-    event.preventDefault();
-    const status = contactForm.querySelector('[data-form-status]');
+  const submitButton = contactForm.querySelector('[data-contact-submit]');
+  const tokenInput = contactForm.querySelector('[data-contact-token]');
+  const status = contactForm.querySelector('[data-form-status]');
+  const endpoint = contactForm.getAttribute('action');
+  let isSubmitting = false;
 
-    if (status) {
-      status.dataset.state = 'unavailable';
-      status.textContent = '現在、お問い合わせフォームは準備中です。送信は行われていません。';
+  const setStatus = (state, message) => {
+    if (!status) return;
+
+    status.dataset.state = state;
+    status.textContent = message;
+  };
+
+  const setSubmitEnabled = enabled => {
+    if (!submitButton) return;
+
+    submitButton.disabled = !enabled;
+    submitButton.setAttribute('aria-disabled', String(!enabled));
+  };
+
+  const loadToken = async (announceStatus = true) => {
+    if (!endpoint || !tokenInput) return false;
+
+    try {
+      const response = await fetch(`${endpoint}?action=token`, {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: { Accept: 'application/json' }
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.ready || !result.token) {
+        throw new Error('Contact form is not configured.');
+      }
+
+      tokenInput.value = result.token;
+      setSubmitEnabled(true);
+      if (announceStatus) {
+        setStatus('ready', '必要事項をご入力のうえ、送信してください。');
+      }
+      return true;
+    } catch {
+      tokenInput.value = '';
+      setSubmitEnabled(false);
+      setStatus('unavailable', '現在、お問い合わせフォームは準備中です。お急ぎの場合はメールまたはお電話でお問い合わせください。');
+      return false;
     }
+  };
 
-    // TODO: 正式な送信先が確定したら、送信中・成功・失敗の状態更新と二重送信防止を実装する。
+  contactForm.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    if (isSubmitting || !endpoint || !tokenInput?.value) return;
+
+    isSubmitting = true;
+    setSubmitEnabled(false);
+    contactForm.setAttribute('aria-busy', 'true');
+    setStatus('sending', '送信しています。しばらくお待ちください。');
+    let failureMessage = '送信できませんでした。時間をおいて再度お試しください。';
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        credentials: 'same-origin',
+        headers: { Accept: 'application/json' }
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        failureMessage = result.message || failureMessage;
+        throw new Error('Contact submission failed.');
+      }
+
+      contactForm.reset();
+      tokenInput.value = result.token || '';
+      setStatus('success', result.message || 'お問い合わせを受け付けました。');
+      setSubmitEnabled(Boolean(result.token));
+    } catch {
+      await loadToken(false);
+      setStatus('error', failureMessage);
+    } finally {
+      isSubmitting = false;
+      contactForm.removeAttribute('aria-busy');
+    }
   });
+
+  loadToken();
 }
 
 /**

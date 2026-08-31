@@ -2,3 +2,5 @@
 node_modules/
 dist/
 .pnpm-store/
+config/contact.local.php
+owks-private/

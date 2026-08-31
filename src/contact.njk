@@ -21,7 +21,12 @@ description: "株式会社OWKSへの製品に関するご質問・導入のご�
     <!-- お問い合わせフォーム -->
     <section class="page-content contact-page-content">
       <div class="container">
-        <form class="contact-form" data-reveal="up">
+        <form class="contact-form" action="api/contact.php" method="post" data-contact-form data-reveal="up">
+          <input type="hidden" name="csrf_token" value="" data-contact-token>
+          <div class="form-row form-row--website" aria-hidden="true">
+            <label for="website">ウェブサイト</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-row">
             <label for="company">会社名</label>
             <input id="company" name="company" autocomplete="organization">
@@ -53,14 +58,14 @@ description: "株式会社OWKSへの製品に関するご質問・導入のご�
           </div>
 
           <div class="submit-row">
-            <button class="button" type="submit" disabled aria-disabled="true">送信</button>
+            <button class="button" type="submit" disabled aria-disabled="true" data-contact-submit>送信</button>
           </div>
           <p class="form-note">
             内容を確認のうえ、担当者よりご連絡いたします。<br>
             お問い合わせ内容によっては、ご返信までにお時間をいただく場合がございます。
           </p>
-          <p class="form-message" id="form-status" data-form-status data-state="unavailable" role="status" aria-live="polite">
-            現在、お問い合わせフォームは準備中です。入力内容は送信されません。
+          <p class="form-message" id="form-status" data-form-status data-state="loading" role="status" aria-live="polite">
+            送信機能の設定を確認しています。
           </p>
         </form>
       </div>
