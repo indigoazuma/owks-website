@@ -130,14 +130,25 @@ h2 {
 .logo {
   position: relative;
   z-index: 32;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  transition: color 250ms ease;
+  display: flex;
+  align-items: center;
+  width: clamp(150px, 11vw, 190px);
+  height: 30px;
 }
 
-.header-on-blue .logo {
-  color: var(--color-white);
+.logo::before {
+  position: absolute;
+  z-index: -1;
+  inset: -8px -14px;
+  border-radius: 7px;
+  background: var(--color-white);
+  content: "";
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .site-header.is-scrolled {
@@ -463,17 +474,6 @@ h2 {
     clip-path: none;
   }
 
-}
-
-@media (min-width: 1200px) {
-  .page-home .site-header:not(.is-scrolled) .logo::before {
-    position: absolute;
-    z-index: -1;
-    inset: -18px -90px -18px -54px;
-    border-radius: 0 40px 40px 0;
-    background: rgba(65, 103, 169, 0.94);
-    content: "";
-  }
 }
 
 @media (min-width: 1600px) and (max-height: 760px) {
@@ -2258,7 +2258,13 @@ h2 {
   }
 
   .logo {
-    font-size: 17px;
+    width: clamp(125px, 36vw, 150px);
+    height: 24px;
+  }
+
+  .logo::before {
+    inset: -6px -10px;
+    border-radius: 6px;
   }
 
   .menu-button {
