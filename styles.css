@@ -336,6 +336,7 @@ h2 {
   line-height: 1.38;
   letter-spacing: 0.025em;
   white-space: nowrap;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
 }
 
 .home-hero__copy > p {
@@ -413,7 +414,6 @@ h2 {
     display: inline-block;
     width: max-content;
     padding: 0.02em 0.14em 0.05em;
-    background: rgba(54, 100, 176, 0.86);
   }
 
   .home-hero__copy > p {
@@ -497,6 +497,7 @@ h2 {
 
 /* 津波の脅威 */
 .flood-section {
+  --product-slope-height: 252px;
   position: relative;
   min-height: 1120px;
   padding: 82px 0 260px;
@@ -514,7 +515,7 @@ h2 {
   right: 0;
   bottom: -2px;
   left: 0;
-  height: 252px;
+  height: var(--product-slope-height);
   background-color: var(--color-white);
   background-image:
     linear-gradient(var(--color-grid-line) 1px, transparent 1px),
@@ -689,11 +690,48 @@ h2 {
 
 /* 製品紹介 */
 .product-intro {
+  --product-slope-height: 252px;
   position: relative;
+  z-index: 2;
   min-height: 820px;
   margin-top: -1px;
   padding: 126px 0 178px;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.product-intro::before {
+  position: absolute;
+  z-index: 0;
+  top: calc(-1 * var(--product-slope-height));
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("images/archimedes-portrait.webp");
+  background-position: right -7vw top;
+  background-repeat: no-repeat;
+  background-size: auto 105%;
+  content: "";
+  opacity: 0.32;
+  pointer-events: none;
+  clip-path: polygon(0 0, 100% var(--product-slope-height), 100% 100%, 0 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.45) 22%, #000 44%);
+  -webkit-mask-position: right -7vw top;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: clamp(850px, 49vw, 940px) 100%;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.45) 22%, #000 44%);
+  mask-position: right -7vw top;
+  mask-repeat: no-repeat;
+  mask-size: clamp(850px, 49vw, 940px) 100%;
+}
+
+@media (min-width: 821px) and (max-width: 1100px) {
+  .product-intro::before {
+    background-position: right -6vw top;
+    opacity: 0.3;
+    -webkit-mask-position: right -6vw top;
+    mask-position: right -6vw top;
+  }
 }
 
 .product-intro::after {
@@ -2376,7 +2414,6 @@ h2 {
 
   .home-hero-title__line {
     padding: 0.02em 0.12em 0.06em;
-    background: rgba(54, 100, 176, 0.72);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
@@ -2434,7 +2471,8 @@ h2 {
   }
 
   .flood-section::after {
-    height: 70px;
+    --product-slope-height: 70px;
+    height: var(--product-slope-height);
   }
 
   .depth-grid {
@@ -2457,8 +2495,23 @@ h2 {
   }
 
   .product-intro {
+    --product-slope-height: 70px;
     min-height: 0;
     padding: 70px 0 115px;
+  }
+
+  .product-intro::before {
+    top: calc(-1 * var(--product-slope-height) - 30px);
+    background-position: 44% clamp(110px, 12vw, 130px);
+    background-size: auto 122%;
+    opacity: 0.25;
+    clip-path: polygon(0 30px, 100% calc(var(--product-slope-height) + 30px), 100% 100%, 0 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 18%, rgba(0, 0, 0, 0.65) 32%, #000 48%);
+    -webkit-mask-position: center;
+    -webkit-mask-size: 100% 100%;
+    mask-image: linear-gradient(to right, transparent 18%, rgba(0, 0, 0, 0.65) 32%, #000 48%);
+    mask-position: center;
+    mask-size: 100% 100%;
   }
 
   .product-intro::after {
@@ -2973,6 +3026,10 @@ h2 {
 }
 
 @media (max-width: 480px) {
+  .product-intro::before {
+    opacity: 0.21;
+  }
+
   .company-map {
     height: 320px;
   }
