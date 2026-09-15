@@ -2502,14 +2502,14 @@ h2 {
 
   .product-intro::before {
     top: calc(-1 * var(--product-slope-height) - 30px);
-    background-position: 44% clamp(110px, 12vw, 130px);
-    background-size: auto 122%;
+    background-position: 100% clamp(200px, 28vw, 220px);
+    background-size: auto 90%;
     opacity: 0.25;
     clip-path: polygon(0 30px, 100% calc(var(--product-slope-height) + 30px), 100% 100%, 0 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 18%, rgba(0, 0, 0, 0.65) 32%, #000 48%);
+    -webkit-mask-image: radial-gradient(ellipse 64% 58% at 72% 68%, #000 0%, #000 50%, rgba(0, 0, 0, 0.55) 68%, transparent 88%);
     -webkit-mask-position: center;
     -webkit-mask-size: 100% 100%;
-    mask-image: linear-gradient(to right, transparent 18%, rgba(0, 0, 0, 0.65) 32%, #000 48%);
+    mask-image: radial-gradient(ellipse 64% 58% at 72% 68%, #000 0%, #000 50%, rgba(0, 0, 0, 0.55) 68%, transparent 88%);
     mask-position: center;
     mask-size: 100% 100%;
   }
@@ -3022,6 +3022,19 @@ h2 {
 
   .simulation-pre-footer > div:last-child {
     margin-top: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-intro::before {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.55) 12%, #000 26%),
+      linear-gradient(to bottom, transparent 0%, #000 18%, #000 88%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.55) 12%, #000 26%),
+      linear-gradient(to bottom, transparent 0%, #000 18%, #000 88%, transparent 100%);
+    mask-composite: intersect;
   }
 }
 
