@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="798" height="962" viewBox="0 0 798 962">
+  <defs>
+    <linearGradient id="fade">
+      <stop offset="0" stop-color="white" stop-opacity="0"/>
+      <stop offset="0.12" stop-color="white" stop-opacity="0.08"/>
+      <stop offset="0.3" stop-color="white" stop-opacity="0.45"/>
+      <stop offset="0.52" stop-color="white" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#fade)" d="M0 0h798v962H0z"/>
+</svg>

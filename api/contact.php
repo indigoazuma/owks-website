@@ -36,6 +36,10 @@ if ((int) ($_SERVER['CONTENT_LENGTH'] ?? 0) > MAX_REQUEST_BYTES) {
     jsonResponse(['success' => false, 'message' => '入力内容が長すぎます。'], 413);
 }
 
+if (!inputFieldsAreStrings($_POST, ['csrf_token', 'website', 'company', 'name', 'kana', 'tel', 'email', 'message'])) {
+    jsonResponse(['success' => false, 'message' => '入力形式が正しくありません。'], 422);
+}
+
 $token = trim((string) ($_POST['csrf_token'] ?? ''));
 if (!consumeToken($token, $config)) {
     jsonResponse([
@@ -234,6 +238,16 @@ function validateContactInput(array $input): array
         $errors[] = '電話番号の形式を確認してください。';
     }
     return [$data, $errors];
+}
+
+function inputFieldsAreStrings(array $input, array $fieldNames): bool
+{
+    foreach ($fieldNames as $fieldName) {
+        if (array_key_exists($fieldName, $input) && !is_string($input[$fieldName])) {
+            return false;
+        }
+    }
+    return true;
 }
 
 function cleanText($value, int $maxLength): string
