@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "eleventy --serve",
+    "prebuild": "pnpm run clean",
     "build": "eleventy",
     "clean": "rm -rf dist"
   },
